@@ -16,7 +16,6 @@ First, we have an example Python script to train a deep neural network using the
 Second, we have the shell script that gets passed to Slurm, `pytorch_mnist.sh`:
  
 ```
-pytorch_mnist.sh
 #!/bin/bash
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpuA100 
