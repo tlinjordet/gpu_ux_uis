@@ -75,7 +75,28 @@ defines the filename to store the job output into.
  
 That's it for the preamble.
  
-The `uenv` command helps to provision the desired CUDA and cudnn driver versions. 
-It also provides the shared miniconda-installation where commonly used/shared environments can be located.  
+The `uenv` command 
+```
+uenv verbose cuda-11.4 cudnn-11.4-8.2.4
+```
+helps to provision the desired CUDA and cudnn driver versions. 
+The next `uenv` command 
+```
+uenv miniconda-python39
+```
+also provides the shared miniconda-installation where commonly used/shared environments can be located.  
  
-Note that the environment-creating command is left in the script, albeit commented out, to indicate what packages are contained therein. 
+Note that the environment-creating command 
+```
+# conda create -n pytorch_env -c pytorch pytorch torchvision numpy -y
+```
+is left in the script, albeit commented out, to indicate what packages are contained therein. 
+
+Finally, the environment is activated, 
+```
+conda activate pytorch_env
+```
+and the deep learning example script is run:
+```
+python -u pytorch_mnist.py
+```
