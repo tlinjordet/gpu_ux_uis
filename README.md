@@ -4,7 +4,7 @@
  
 While Slurm has its own documentation that is worth looking at, the following will demonstrate a minimal way to run a deep learning script on one of gorina7's A100 GPUs.
  
-Jobs are launched from gorina11, so ssh to gorina first. 
+Jobs are launched from gorina11, so ssh to gorina11 first. 
 ```
 ssh username@gorina11.ux.uis.no
 cd /bhome/username/
