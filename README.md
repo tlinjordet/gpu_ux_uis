@@ -11,7 +11,7 @@ cd /bhome/username/
 ```
 Your data and script should be somewhere under `/bhome/$username/`.
  
-First, we have an example Python script to train a deep neural network using the PyTorch framework, `pytorch_mnist.py`, see attached. 
+First, we have an example Python script to train a deep neural network using the PyTorch framework, `pytorch_mnist.py`, see the other files in this repo. 
  
 Second, we have the shell script that gets passed to Slurm, `pytorch_mnist.sh`:
  
