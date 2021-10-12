@@ -43,7 +43,7 @@ Now, after a while, the neural network should be training!
 You've been quickstarted on Slurm. 
  
  
-## Post-quickstart notes: 
+## Anatomy of a Quickstart (explanatory notes): 
  
 To gain a bit more understanding, we can discuss the options used here. 
 The comments starting with `#SBATCH` are passed to Slurm. 
