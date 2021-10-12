@@ -6,10 +6,10 @@ While Slurm has its own documentation that is worth looking at, the following wi
  
 Jobs are launched from gorina11, so ssh to gorina11 first. 
 ```
-ssh username@gorina11.ux.uis.no
+ssh $username@gorina11.ux.uis.no
 cd /bhome/username/
 ```
-Your data and script should be somewhere under `/bhome/$username/`.
+Your data and script should be placed somewhere under `/bhome/$username/`.
  
 First, we have an example Python script to train a deep neural network using the PyTorch framework, `pytorch_mnist.py`, see the other files in this repo. 
  
