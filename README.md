@@ -49,7 +49,7 @@ First, we have the environment setup shell script that gets via `sbatch` passed 
  
 # Set up environment
 uenv verbose cuda-11.4 cudnn-11.4-8.2.4
-uenv uenv miniconda-python39
+uenv miniconda-python39
 conda create -n pytorch_env -c pytorch pytorch torchvision numpy -y
 ```
 We should always run a separate job that creates a specific virtual environment without occupying GPUs. This is ensured by the second line of the script, 
@@ -62,7 +62,7 @@ Note that the environment-creating command
 ```
 conda create -n pytorch_env -c pytorch pytorch torchvision numpy -y
 ```
-will create an environment that can later be activated by the command `conda activate pytorch_env` assuming the correct base Anaconda environment is activated, here done by `uenv anaconda-3`. 
+will create an environment that can later be activated by the command `conda activate pytorch_env` assuming the correct base Anaconda environment is activated, here done by `uenv miniconda-python39`. 
 
 ### GPU-job script
 
@@ -78,7 +78,7 @@ Second, we have the GPU-job shell script that gets passed to Slurm by the `sbatc
  
 # Activate environment
 uenv verbose cuda-11.4 cudnn-11.4-8.2.4
-uenv uenv miniconda-python39
+uenv miniconda-python39
 conda activate pytorch_env
 # Run the Python script that uses the GPU
 python -u pytorch_mnist.py
