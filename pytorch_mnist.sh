@@ -5,9 +5,9 @@
 #SBATCH --job-name=pytorch_mnist
 #SBATCH --output=mnist_test_01.out
  
-# Set up environment
+# Activate environment
 uenv verbose cuda-11.4 cudnn-11.4-8.2.4
 uenv miniconda-python39
-# conda create -n pytorch_env -c pytorch pytorch torchvision numpy -y
 conda activate pytorch_env
+# Run the script that uses the GPU
 python -u pytorch_mnist.py
