@@ -7,7 +7,7 @@
  
 # Activate environment
 uenv verbose cuda-11.4 cudnn-11.4-8.2.4
-uenv miniconda-python39
+uenv anaconda-3
 conda activate pytorch_env
-# Run the script that uses the GPU
+# Run the Python script that uses the GPU
 python -u pytorch_mnist.py
