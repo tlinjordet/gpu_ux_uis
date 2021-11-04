@@ -62,7 +62,7 @@ Note that the environment-creating command
 ```
 conda create -n pytorch_env -c pytorch pytorch torchvision numpy -y
 ```
-will create an environment that can later be activated by the command `conda activate pytorch_env` assuming the correct base Anaconda environment is activated, here done by `uenv miniconda-python39`. 
+will create an environment that can later be activated by the command `conda activate pytorch_env` assuming the correct base Anaconda or Miniconda environment is activated, here done by `uenv miniconda-python39`. 
 
 ### GPU-job script
 
