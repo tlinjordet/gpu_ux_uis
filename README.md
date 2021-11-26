@@ -31,7 +31,6 @@ You've been quickstarted on Slurm.
 
 Below are details about the scripts used in the above commands, and some additional Slurm commands to try out. 
 
-
 ## Files used in this quickstart
 
 To better understand what is happening in the quickstart scripts and have an idea how to apply this example to your own work, we describe each of the three scripts in turn. 
@@ -144,6 +143,13 @@ Note that this is the Python script called by the final line of `pytorch_mnist.s
 The environment provisioned by Slurm, including an available GPU, means that the user does not have to worry about direct conflicts with other users' processes when sending jobs to a GPU. If the requested resources are not available right now, the job will be queued. 
 
 The details of this script are beyond the scope of this documentation, but it represents a "Hello world" or toy example script for deep learning. See docstrings inside `pytorch_mnist.py` for more information. 
+
+# Troubleshooting
+
+Here, quick solutions to problems encountered by users will be added in an *ad hoc* manner. 
+
+ - If you have no `/bhome/$username` directory, then send Theo an email and ask him to make one for you.
+ - If you cannot use the `uenv` command, it is probably because you have deleted or modified some of your user configuration files (.bashrc, .profile and/or .login). Send Theo an email and ask him to reinstate the standard version of these files for your user. 
 
 # Some additional Slurm commands to try
 
