@@ -148,8 +148,8 @@ The details of this script are beyond the scope of this documentation, but it re
 
 Here, quick solutions to problems encountered by users will be added in an *ad hoc* manner. 
 
- - If you have no `/bhome/$username` directory, then send Theo an email and ask him to make one for you.
- - If you cannot use the `uenv` command, it is probably because you have deleted or modified some of your user configuration files (.bashrc, .profile and/or .login). Send Theo an email and ask him to reinstate the standard version of these files for your user. 
+ - If you have no `/bhome/$username` directory, then send theo an email and ask him to make one for you.
+ - If you cannot use the `uenv` command, it is probably because you have deleted or modified some of your user configuration files (.bashrc, .profile and/or .login). Send theo an email and ask him to reinstate the standard version of these files for your user. 
 
 # Some additional Slurm commands to try
 
