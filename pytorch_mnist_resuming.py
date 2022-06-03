@@ -213,6 +213,7 @@ def main():
             cmd, stdout=tempf, stderr=tempf, shell=True, cwd=os.getcwd()
         )
         proc.communicate()
+    print("Subprocess silenced.")
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
