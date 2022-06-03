@@ -202,12 +202,13 @@ def main():
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
     ## resume: Prepare to run this sbatch script recursively if and only if
     ## resume: .. it fails, e.g., by time-out.
+    os.path.isfile("pytorch_mnist_resuming.sh)
     cmd = [
         "sbatch",
-        f"--dependency=afternotok:{args.slurm_job_id},singleton",
+        str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
         "pytorch_mnist_resuming.sh",
     ]
-    result = subprocess.run(cmd, shell=True)
+    output = subprocess.run(cmd, shell=True)
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
