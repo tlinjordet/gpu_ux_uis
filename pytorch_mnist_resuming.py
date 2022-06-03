@@ -179,8 +179,8 @@ def main():
     ## resume: {
     parser.add_argument(
         "--slurm_job_id",
-        action="store_true",
-        default=None,
+        type=int,
+        default=1,
         help="For defining dependency",
     )
 
