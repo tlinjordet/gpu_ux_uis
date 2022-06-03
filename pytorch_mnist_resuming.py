@@ -40,6 +40,7 @@ from __future__ import print_function
 import argparse
 import datetime  ## resume
 import os  ## resume
+import subprocess  ##resume
 import sys
 import time  ## resume
 import torch
@@ -169,13 +170,22 @@ def main():
         metavar="N",
         help="how many batches to wait before logging training status",
     )
-
     parser.add_argument(
         "--save-model",
         action="store_true",
         default=False,
         help="For Saving the current Model",
     )
+    ## resume: {
+    parser.add_argument(
+        "--slurm_job_id",
+        action="store_true",
+        default=None,
+        help="For defining dependency",
+    )
+
+    ## } resume.
+
     args = parser.parse_args()
 
     ## resume: { Check if the desired number of epochs was reached. If so, exit.
@@ -190,6 +200,12 @@ def main():
             if os.path.exists(f"mnist_cnn_epoch{epoch}.pt"):
                 completed_epoch = epoch
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
+    ## resume: Prepare to run this sbatch script recursively if and only if
+    ## resume: .. it fails, e.g., by time-out.
+    cmd = f"sbatch --dependency=afternotok:{args.slurm_job_id},singleton pytorch_mnist_resuming.sh"
+    cwd = os.getcwd()
+    p = subprocess.Popen(cmd, cwd=cwd)
+    p.wait()
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
