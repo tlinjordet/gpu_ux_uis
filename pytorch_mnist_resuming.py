@@ -255,12 +255,14 @@ def main():
         checkpoint = torch.load(checkpoint_path)
         model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
-        loaded_epoch = checkpoint["epoch"]
-        assert completed_epoch == loaded_epoch  ## resume: just a sanity check.
+        current_epoch = checkpoint["epoch"]
+        assert completed_epoch == current_epoch  ## resume: just a sanity check.
         loaded_loss = checkpoint["loss"]  ## resume: shown in tutorial, not used.
     ## } resume.
+    else:
+        current_epoch = 0
 
-    for epoch in range(loaded_epoch + 1, args.epochs + 1):
+    for epoch in range(current_epoch + 1, args.epochs + 1):
         t0 = time.time()  ## resume
         train(args, model, device, train_loader, optimizer, epoch)
         test_loss = test(args, model, device, test_loader)
