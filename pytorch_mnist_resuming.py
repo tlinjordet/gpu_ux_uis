@@ -208,7 +208,11 @@ def main():
         str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
         "pytorch_mnist_resuming.sh",
     ]
-    output = subprocess.run(cmd, cwd=os.getcwd(), shell=True)
+    with open(os.devnull, "w") as tempf:
+        proc = subprocess.Popen(
+            cmd, stdout=tempf, stderr=tempf, shell=True, cwd=os.getcwd()
+        )
+        proc.communicate()
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
