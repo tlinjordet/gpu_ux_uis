@@ -202,7 +202,7 @@ def main():
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
     ## resume: Prepare to run this sbatch script recursively if and only if
     ## resume: .. it fails, e.g., by time-out.
-    os.path.isfile("pytorch_mnist_resuming.sh)
+    os.path.isfile("pytorch_mnist_resuming.sh")
     cmd = [
         "sbatch",
         str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
