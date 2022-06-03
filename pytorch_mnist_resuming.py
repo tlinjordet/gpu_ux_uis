@@ -268,7 +268,7 @@ def main():
         current_epoch = 0
 
     for epoch in range(current_epoch + 1, args.epochs + 1):
-        t0 = time.clock()  ## resume
+        t0 = time.perf_counter()  ## resume
         train(args, model, device, train_loader, optimizer, epoch)
         test_loss = test(args, model, device, test_loader)
         ## resume: {}
@@ -284,7 +284,7 @@ def main():
             )
             ## resume: TODO Add code to delete older model files if necessary,
             ## resume: ... to save the best model so far, etc.
-        t1 = time.clock()
+        t1 = time.perf_counter()
         total = t1 - t0
         totaldelta = str(datetime.timedelta(total))
         print(f"It took {totaldelta} to train, test, and save epoch {epoch}.")
