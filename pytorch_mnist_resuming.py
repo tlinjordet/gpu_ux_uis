@@ -286,8 +286,8 @@ def main():
             ## resume: ... to save the best model so far, etc.
         t1 = time.perf_counter()
         total = t1 - t0
-        totaldelta = str(datetime.timedelta(total))
-        print(f"It took {totaldelta} to train, test, and save epoch {epoch}.")
+        # totaldelta = str(datetime.timedelta(total))
+        print(f"It took {total} seconds to train, test, and save epoch {epoch}.")
         ## } resume.
 
     ## resume: # if args.save_model:
