@@ -282,8 +282,11 @@ def main():
                 },
                 f"mnist_cnn_epoch{epoch}.pt",
             )
-            ## resume: TODO Add code to delete older model files if necessary,
-            ## resume: ... to save the best model so far, etc.
+            ## resume: Add code to delete older model files if necessary,
+            older_file = f"mnist_cnn_epoch{epoch-5}.pt"
+            if os.path.exists(older_file):
+                os.remove(older_file)
+            ## resume: ...TODO to save the best model so far, etc.
         t1 = time.perf_counter()
         total = t1 - t0
         # totaldelta = str(datetime.timedelta(total))
