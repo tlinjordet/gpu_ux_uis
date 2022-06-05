@@ -1,7 +1,7 @@
 #!/bin/bash
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpuA100 
-#SBATCH --time=00:01:00
+#SBATCH --time=01:00:00
 #SBATCH --job-name=pytorch_mnist_resuming
 #SBATCH --output=mnist_test_resuming.out
 

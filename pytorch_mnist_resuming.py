@@ -263,6 +263,7 @@ def main():
         current_epoch = checkpoint["epoch"]
         assert completed_epoch == current_epoch  ## resume: just a sanity check.
         loaded_loss = checkpoint["loss"]  ## resume: shown in tutorial, not used.
+        print("Resume: loaded a checkpoint from a previous Slurm job.")
     ## } resume.
     else:
         current_epoch = 0
@@ -286,6 +287,7 @@ def main():
             older_file = f"mnist_cnn_epoch{epoch-5}.pt"
             if os.path.exists(older_file):
                 os.remove(older_file)
+                print("Resume: cleaned up older checkpoint")
             ## resume: ...TODO to save the best model so far, etc.
         t1 = time.perf_counter()
         total = t1 - t0
