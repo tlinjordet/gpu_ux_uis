@@ -1,12 +1,12 @@
 #!/bin/bash
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpuA100 
-#SBATCH --array=1-20%1
+#SBATCH --array=1-25%1
 #SBATCH --time=00:01:00
 #SBATCH --job-name=pytorch_mnist_resuming
 #SBATCH --output=mnist_test_resuming.out
 
-TARGET_EPOCHS=50
+TARGET_EPOCHS=30
 
 # Activate environment
 uenv verbose cuda-11.4 cudnn-11.4-8.2.4
