@@ -1,6 +1,7 @@
 #!/bin/bash
 #SBATCH --gres=gpu:1
 #SBATCH --partition=gpuA100 
+#SBATCH --array=1-170%1
 #SBATCH --time=00:01:00
 #SBATCH --job-name=pytorch_mnist_resuming
 #SBATCH --output=mnist_test_resuming.out
@@ -14,7 +15,5 @@ conda activate pytorch_env
 # Run the Python script that uses the GPU 
 # and which checks if the target number 
 # of epochs has been reached.
-python -u pytorch_mnist_resuming.py --epochs 500 --save-model # --slurm_job_id=$SLURM_JOBID
+python -u pytorch_mnist_resuming.py --epochs 500 --save-model > mnist_test_resuming-subtask_${SLURM_ARRAY_TASK_ID}.txt
 
-# If the model training was interrupted, pytorch_mnist_resuming.py will launch 
-# `sbatch pytorch_mnist_resuming.sh` again, if else not.
