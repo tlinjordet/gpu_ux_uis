@@ -194,15 +194,11 @@ def main():
         # Finish training, no need to relaunch training script again.
         return
     # If not, load saved model, and keep training.
-    elif os.path.exists(f"mnist_cnn_epoch1.pt"):
+    else:
         for epoch in range(1, args.epochs + 1):
             if os.path.exists(f"mnist_cnn_epoch{epoch}.pt"):
                 completed_epoch = epoch
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
-            older_file = f"mnist_cnn_epoch{epoch-5}.pt"
-            if os.path.exists(older_file):
-                os.remove(older_file)
-                print("Resume: cleaned up older checkpoint")
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
