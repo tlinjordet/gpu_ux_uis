@@ -192,6 +192,7 @@ def main():
     checkpoint_path = ""
     if os.path.exists(f"mnist_cnn_epoch{args.epochs}.pt"):
         # Finish training, no need to relaunch training script again.
+        print("The checkpoint for the target final epoch already exists. Exit.")
         return
     # If not, load saved model, and keep training.
     else:
@@ -199,6 +200,7 @@ def main():
             if os.path.exists(f"mnist_cnn_epoch{epoch}.pt"):
                 completed_epoch = epoch
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
+    print(f"Resuming from epoch {completed_epoch}.")
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
@@ -244,6 +246,7 @@ def main():
     ## resume: { Resume if previously saved model checkpoint was found
     ## resume: Use code from https://pytorch.org/tutorials/recipes/recipes/saving_and_loading_a_general_checkpoint.html
     if completed_epoch > 0:
+        print(f"Loading checkpoint {checkpoint_path}.")
         checkpoint = torch.load(checkpoint_path)
         model.load_state_dict(checkpoint["model_state_dict"])
         optimizer.load_state_dict(checkpoint["optimizer_state_dict"])
