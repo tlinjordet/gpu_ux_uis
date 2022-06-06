@@ -177,13 +177,12 @@ def main():
         help="For Saving the current Model",
     )
     ## resume: {
-    parser.add_argument(
-        "--slurm_job_id",
-        type=int,
-        default=1,
-        help="For defining dependency",
-    )
-
+    #parser.add_argument(
+    #    "--slurm_job_id",
+    #    type=int,
+    #    default=1,
+    #    help="For defining dependency",
+    #)
     ## } resume.
 
     args = parser.parse_args()
@@ -202,23 +201,23 @@ def main():
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
     ## resume: Prepare to run this sbatch script recursively if and only if
     ## resume: .. it fails, e.g., by time-out.
-    assert os.path.isfile("pytorch_mnist_resuming.sh")
-    cmd0 = [
-        "sbatch",
-        str(f"--dependency=afternotok:{args.slurm_job_id}"),  # ,singleton"),
-        "echo_outside.sh",
-    ]
-    cmd = [
-        "sbatch",
-        str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
-        "pytorch_mnist_resuming.sh",
-    ]
-    with open(os.devnull, "w") as tempf:
-        proc = subprocess.Popen(
-            cmd0, stdout=tempf, stderr=tempf, shell=True, cwd=os.getcwd()
-        )
-        proc.communicate()
-    print("Subprocess silenced.")
+    #assert os.path.isfile("pytorch_mnist_resuming.sh")
+    #cmd0 = [
+    #    "sbatch",
+    #    str(f"--dependency=afternotok:{args.slurm_job_id}"),  # ,singleton"),
+    #    "echo_outside.sh",
+    #]
+    #cmd = [
+    #    "sbatch",
+    #    str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
+    #    "pytorch_mnist_resuming.sh",
+    #]
+    #with open(os.devnull, "w") as tempf:
+    #    proc = subprocess.Popen(
+    #        cmd0, stdout=tempf, stderr=tempf, shell=True, cwd=os.getcwd()
+    #    )
+    #    proc.communicate()
+    #print("Subprocess silenced.")
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
