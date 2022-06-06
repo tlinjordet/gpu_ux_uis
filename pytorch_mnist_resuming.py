@@ -177,12 +177,12 @@ def main():
         help="For Saving the current Model",
     )
     ## resume: {
-    #parser.add_argument(
+    # parser.add_argument(
     #    "--slurm_job_id",
     #    type=int,
     #    default=1,
     #    help="For defining dependency",
-    #)
+    # )
     ## } resume.
 
     args = parser.parse_args()
@@ -199,32 +199,19 @@ def main():
             if os.path.exists(f"mnist_cnn_epoch{epoch}.pt"):
                 completed_epoch = epoch
                 checkpoint_path = f"mnist_cnn_epoch{epoch}.pt"
-    ## resume: Prepare to run this sbatch script recursively if and only if
-    ## resume: .. it fails, e.g., by time-out.
-    #assert os.path.isfile("pytorch_mnist_resuming.sh")
-    #cmd0 = [
-    #    "sbatch",
-    #    str(f"--dependency=afternotok:{args.slurm_job_id}"),  # ,singleton"),
-    #    "echo_outside.sh",
-    #]
-    #cmd = [
-    #    "sbatch",
-    #    str(f"--dependency=afternotok:{args.slurm_job_id},singleton"),
-    #    "pytorch_mnist_resuming.sh",
-    #]
-    #with open(os.devnull, "w") as tempf:
-    #    proc = subprocess.Popen(
-    #        cmd0, stdout=tempf, stderr=tempf, shell=True, cwd=os.getcwd()
-    #    )
-    #    proc.communicate()
-    #print("Subprocess silenced.")
+            older_file = f"mnist_cnn_epoch{epoch-5}.pt"
+            if os.path.exists(older_file):
+                os.remove(older_file)
+                print("Resume: cleaned up older checkpoint")
     ## } resume.
 
     use_cuda = not args.no_cuda and torch.cuda.is_available()
 
     torch.manual_seed(args.seed)
-    ## resume: How many steps in random number sequence have been used?
-    ## resume: How to resume random number sequence?
+    ## resume: TODO Check if re-initializing fixed random seed in subtasks
+    ## resume: .. affects batches/results during machine learning.
+    ## resume: If there is an issue, set a different random seed
+    ## resume: for each subtask
 
     device = torch.device("cuda" if use_cuda else "cpu")
 
@@ -276,8 +263,8 @@ def main():
         t0 = time.perf_counter()  ## resume
         train(args, model, device, train_loader, optimizer, epoch)
         test_loss = test(args, model, device, test_loader)
-        ## resume: {}
-        if args.save_model:  ## resume
+        ## resume: {
+        if args.save_model:
             torch.save(
                 {
                     "epoch": epoch,
@@ -292,7 +279,7 @@ def main():
             if os.path.exists(older_file):
                 os.remove(older_file)
                 print("Resume: cleaned up older checkpoint")
-            ## resume: ...TODO to save the best model so far, etc.
+            ## resume: ...TODO to save/propagate the best model so far, etc.
         t1 = time.perf_counter()
         total = t1 - t0
         # totaldelta = str(datetime.timedelta(total))
